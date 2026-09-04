@@ -1,0 +1,4 @@
+# 法规资料库是运行时按需克隆的开源数据，不入库
+laws/
+.DS_Store
+Thumbs.db
