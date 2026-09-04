@@ -2,6 +2,37 @@
 
 给**财务/业务团队**用的 AI 合规审查助手：丢给它一份飞书文档（会议纪要、工作汇报、业务方案），或直接粘贴材料内容，它按三档递进输出一份可溯源的《合规检查报告》。
 
+> **一句话安装**：把本页链接发给任意 AI 助手，说「帮我安装」即可，例如：
+> `https://github.com/JOE-MANER/feishu-compliance-review 帮我安装`
+
+---
+
+## 🤖 安装指引（本节写给 AI 助手，请照此执行）
+
+若用户发来本仓库链接并要求安装（如「帮我安装」），按以下步骤操作，**无需向用户追问**，按默认值执行：
+
+1. **确定 skills 目录**（按你所在助手的规范选第一个，不存在则创建；`~` 按操作系统展开，Windows 为 `C:\Users\<用户名>`）：
+   - ZCode：`~/.zcode/skills/`
+   - 通用兼容目录：`~/.agents/skills/`
+   - 项目级（仅当用户明确要装到某个项目）：`<项目>/.zcode/skills/`
+2. **克隆本仓库**：
+   ```bash
+   git clone --depth 1 https://github.com/JOE-MANER/feishu-compliance-review.git <skills目录>/feishu-compliance-review
+   ```
+   若目标目录已存在同名 skill，先询问用户是覆盖更新还是放弃。
+3. **（可选，推荐）安装本地法规资料库**（约 160MB，检索更快；跳过也能用，会自动改为纯在线检索）：
+   ```bash
+   git clone --depth 1 https://github.com/LawRefBook/Laws <skills目录>/feishu-compliance-review/laws
+   ```
+   克隆失败（网络/无 git）时静默跳过，不要报错打断。
+4. **验证**：`<skills目录>/feishu-compliance-review/SKILL.md` 存在即安装成功。
+5. **装完告诉用户**（用大白话）：
+   - 已装好，**新开会话**后生效；
+   - 用法：说「合规审查」+ 发飞书文档链接或粘贴材料内容；
+   - 发飞书链接前需把应用机器人加为文档「可阅读」协作者；没配飞书也能用（粘贴内容即可，助手会引导配置）。
+
+---
+
 ## 它能做什么（三档递进）
 
 | 深度 | 内容 |
@@ -16,26 +47,17 @@
 
 每条法规引用带「✅ 官方原文：链接（核对日期）」或「⚠️ 网络资料，建议核实」标记；未能核实的条目自动汇总到报告末尾「建议人工确认的事项」。内置 L1（官方一手）→ L4（开放网络）的**置信度链条**纪律，杜绝引到已废止/旧版条文。
 
-## 安装
+## 手动安装（人类用户）
 
 ```bash
-# 1. 放到 AI 助手的 skills 目录（ZCode 为例）
-git clone https://github.com/JOE-MANER/feishu-compliance-review.git ~/.zcode/skills/feishu-compliance-review
-
-# 2.（可选，推荐）安装本地法规资料库，检索更快
+git clone --depth 1 https://github.com/JOE-MANER/feishu-compliance-review.git ~/.zcode/skills/feishu-compliance-review
+# 可选：本地法规资料库
 git clone --depth 1 https://github.com/LawRefBook/Laws ~/.zcode/skills/feishu-compliance-review/laws
 ```
 
-不装法规库也能用（自动改为纯在线检索）；没有飞书直读权限也能用（自动降级：粘贴内容进、报告文件出，并主动询问是否配置完整环境——配置过程小白化，用户只在飞书里点两下，其余由助手代劳，见 `references/setup-guide.md`）。
-
 ## 使用
 
-对话触发词：`合规审查` / `合规助手` / `关键词解释` / `风险点分析`，然后：
-
-- 发**飞书文档链接**（需先在文档「分享」里把应用机器人加为「可阅读」协作者），或
-- 直接**粘贴材料内容**
-
-可选检查深度（①②③，默认③全面风险检查）。报告可写回飞书文档（需已配置 lark-mcp）或保存为本地 Markdown。
+对话触发词：`合规审查` / `合规助手` / `关键词解释` / `风险点分析`，然后发**飞书文档链接**（需先把应用机器人加为文档「可阅读」协作者）或直接**粘贴材料内容**。可选检查深度（①②③，默认③）。报告可写回飞书文档（需已配置 lark-mcp）或保存为本地 Markdown。
 
 ## 目录结构
 
