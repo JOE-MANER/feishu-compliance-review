@@ -20,7 +20,7 @@
 
 ```bash
 # 1. 放到 AI 助手的 skills 目录（ZCode 为例）
-git clone https://github.com/<你的用户名>/feishu-compliance-review.git ~/.zcode/skills/feishu-compliance-review
+git clone https://github.com/JOE-MANER/feishu-compliance-review.git ~/.zcode/skills/feishu-compliance-review
 
 # 2.（可选，推荐）安装本地法规资料库，检索更快
 git clone --depth 1 https://github.com/LawRefBook/Laws ~/.zcode/skills/feishu-compliance-review/laws
