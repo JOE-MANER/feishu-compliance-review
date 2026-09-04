@@ -65,7 +65,7 @@ git clone --depth 1 https://github.com/LawRefBook/Laws ~/.zcode/skills/feishu-co
 feishu-compliance-review/
 ├── SKILL.md              # 主流程：三档分析 + 置信度链条 + 引用协议 + 报告模板
 ├── references/
-│   └── setup-guide.md    # 完整环境配置引导（财务用户小白版）
+│   └── setup-guide.md    # 完整环境配置引导
 └── laws/                 # 运行时克隆的法规资料库（LawRefBook/Laws，不入本库）
 ```
 
